@@ -1,0 +1,23 @@
+.spin {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    margin-bottom: 40px;
+    padding: 30px 50px;
+    display:block;
+    margin-left: 400px;
+    position: absolute;
+    z-index: 9999;
+    text-align: center;
+  }
+
+.loader {
+    margin-top: 10px;
+    margin-right: 150px;
+    text-align: center;
+}
+
+.error{
+  margin-top: 10px;
+  text-align: center;
+}

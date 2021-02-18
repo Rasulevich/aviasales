@@ -1,0 +1,12 @@
+.logo {
+    position: absolute;
+    left: 36.88%;
+    top: 50px;
+}
+@media screen and (max-device-width: 480px) {
+    .logo {
+        position: absolute;
+        left: 60%;
+        top: 10px;
+    }
+}

@@ -1,3 +1,12 @@
+const ALL = 'ALL';
+const ALLOFF = 'ALLOFF';
+const NOSTOPS ='NOSTOPS';
+const ONESTOP ='ONESTOP';
+const TWOSTOPS ='TWOSTOPS';
+const THREESTOPS ='THREESTOPS';
+const CHEAP ='CHEAP';
+const FAST ='FAST';
+
 const initialState = {
     filters:'off',
     noStopsCheck:false,
@@ -6,33 +15,11 @@ const initialState = {
     threeStopsCheck:false,
     sorting:'off',
     checkbox:'off',
-    tickets:[],
-    preload:[],
-    loading:true,
-    error:false
 }
 
-const reducer = (state = initialState, action) => {
+const filtersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'TICKETS_LOADED':
-            return {
-                ...state,
-                tickets:action.payload,
-                loading:false
-            }
-        case 'PRELOAD_TICKETS':
-            return {
-                ...state,
-                preload:action.payload,
-                loading:true
-            }
-        case 'ERROR':
-            return {
-                ...state,
-                error:true,
-                loading:false,
-            }
-        case 'all':
+        case ALL:
             return {
                 ...state,
                 filters: 'on',
@@ -42,7 +29,7 @@ const reducer = (state = initialState, action) => {
                 twoStopsCheck:true,
                 threeStopsCheck:true
             }
-        case 'allOff':
+        case ALLOFF:
             return {
                 ...state,
                 filters:'off',
@@ -52,40 +39,40 @@ const reducer = (state = initialState, action) => {
                 twoStopsCheck:false,
                 threeStopsCheck:false,
             }   
-        case 'noStops':
+        case NOSTOPS:
             return {
                 ...state,
                 filters: 'off',
                 checkbox: 'off',
                 noStopsCheck:!state.noStopsCheck
             }
-        case 'oneStop':
+        case ONESTOP:
             return {
                 ...state,
                 filters: 'off',
                 checkbox: 'off',
-                oneStopCheck:!state.oneStopCheck
+                oneStopCheck:!state.oneStopCheck,
             }
-        case 'twoStops':
+        case TWOSTOPS:
             return {
                 ...state,
                 filters:'off',
                 checkbox: 'off',
                 twoStopsCheck :!state.twoStopsCheck
             }
-        case 'threeStops':
+        case THREESTOPS:
             return {
                 ...state,
                 filters:'off',
                 checkbox: 'off',
                 threeStopsCheck :!state.threeStopsCheck
             }
-        case 'cheap':
+        case CHEAP:
             return {
                 ...state,
                 sorting : 'cheap'
             }
-        case 'fast':
+        case FAST:
             return {
                 ...state,
                 sorting : 'fast'
@@ -95,5 +82,4 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer;
-
+export default filtersReducer;

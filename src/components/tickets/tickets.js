@@ -1,19 +1,21 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from './tickets.module.scss';
-
 
 const Tickets = ({price,dateStart,dateBack, airportStart, airportBack, 
     duration, durationBack,stopsStart, stopsBack,carrier}) => {
 
     const timeStart = dateStart.slice(11,16);
     const timeEnd = dateBack.slice(11,16);
+
     const getTimeFromMins = (mins) => {
         const hours = Math.trunc(mins/60);
         const minutes = mins % 60;
         return `${hours  }ч:${  minutes}м`;
     };
+
     const stopsElements = (direction) =>direction.join(', ');
+
     const logo = `//pics.avs.io/99/36/${carrier}.png`;
 
     const TrueGrammatic = (way) => {
@@ -31,15 +33,17 @@ const Tickets = ({price,dateStart,dateBack, airportStart, airportBack,
         }
     }
 
-  
     return(
             <div className={style.tickets}>
+
                 <div className={style.tickets__header}> 
                     <span className={style.price}>{price} P </span> 
                     <span className={style.airlines}>
                         <img src={logo} alt='S7'/></span>
                 </div>
+
                 <div className={style.tickets__content}>
+
                     <div className={style.ticket__info}>
                         <div className={style.ticket__section}>
                             <span className={style.info__header}>{airportStart}-{airportBack}</span>
@@ -54,6 +58,7 @@ const Tickets = ({price,dateStart,dateBack, airportStart, airportBack,
                             <span className={style.info__content}>{stopsElements(stopsStart)}</span>
                         </div>
                     </div>
+
                     <div className={style.ticket__info}>
                         <div className={style.ticket__section}>
                             <span className={style.info__header}>{airportBack}-{airportStart}</span>
@@ -68,9 +73,37 @@ const Tickets = ({price,dateStart,dateBack, airportStart, airportBack,
                             <span className={style.info__content}>{stopsElements(stopsBack)}</span>
                         </div>
                     </div>
+
                 </div>
             </div> 
         )
+}
+
+
+Tickets.propTypes = {
+    price:PropTypes.number,
+    dateStart:PropTypes.string,
+    dateBack:PropTypes.string,
+    airportStart:PropTypes.string,
+    airportBack:PropTypes.string,
+    duration:PropTypes.number,
+    durationBack:PropTypes.number,
+    stopsStart:PropTypes.arrayOf(PropTypes.any),
+    stopsBack:PropTypes.arrayOf(PropTypes.any),
+    carrier:PropTypes.string,
+}    
+
+Tickets.defaultProps = {
+    price:'',
+    dateStart:'',
+    dateBack:'',
+    airportStart:'',
+    airportBack:'',
+    duration:'',
+    durationBack:'',
+    stopsStart:[],
+    stopsBack:[],
+    carrier:''
 }
 
 

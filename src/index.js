@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import reduxThunk from 'redux-thunk'
 import './index.css';
 import App from './App';
-import reducer from './state/reducer';
+import combineReducers from './state/combineReducers';
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -14,7 +14,7 @@ const composeEnhancers =
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(reduxThunk)));
+const store = createStore(combineReducers,composeEnhancers(applyMiddleware(reduxThunk)));
 
   ReactDOM.render(
     <Provider store={store}>
